@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Witch On Broomstick</title>
+    <link rel = "stylesheet" href = "styles.css">
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <canvas id = "starting-screen"></canvas>
+    <canvas id = "ending-screen"></canvas>
+    <script src = "script.js" type = "module"></script>
+    <div class = "storage">
+        <!-- This is for layers' image -->
+        <img src = "./assets/parallax_mountain_pack/layers/parallax-mountain-bg.png" id = "background-layer1">
+        <img src = "./assets/parallax_mountain_pack/layers/parallax-mountain-mountain-far.png" id = "background-layer2">
+        <img src = "./assets/parallax_mountain_pack/layers/parallax-mountain-mountains.png" id = "background-layer3">
+        <img src = "./assets/parallax_mountain_pack/layers/parallax-mountain-foreground-trees.png" id = "background-layer4">
+        <img src = "./assets/parallax_mountain_pack/layers/parallax-mountain-trees.png" id = "background-layer5">
+
+        <!--  This is for player's UI and image -->
+        <img src = "./assets/player_pack/health.png" id = "health-UI">
+        <img src = "./assets/player_pack/mana_orb_sprite_sheet.png" id = "mana-UI">
+        <img src = "./assets/player_pack/sprite_sheet.png" id = "player-image">
+        <img src = "./assets/player_pack/red_flame.png" id = "level1-attack-image">
+        <img src = "./assets/player_pack/green_flame.png" id = "level2-attack-image">
+        <img src = "./assets/player_pack/pink_flame.png" id = "level3-attack-image">
+        <img src = "./assets/projectile_pack/level1_explosion.png" id = "level1-explosion-image">
+        <img src = "./assets/projectile_pack/level2_explosion.png" id = "level2-explosion-image">
+        <img src = "./assets/projectile_pack/level3_explosion.png" id = "level3-explosion-image">
+        <img src = "./assets/projectile_pack/laser_charging_effect.png" id = "laser-charging-effect-image">
+
+        <!--  This is for dropping item image -->
+        <img src = "./assets/dropping_items/health_potion.png" id = "health-potion-image">
+        <img src = "./assets/dropping_items/mana_potion.png" id = "mana-potion-image">
+        <img src = "./assets/dropping_items/attack_upgrade.png" id = "attack-upgrade-image">
+        <img src = "./assets/dropping_items/pierce_upgrade.png" id = "pierce-upgrade-image">
+
+        <!-- This is for bosses's related image-->
+        <img src = "./assets/bosses/reaperbot_sprite_sheet_test.png" id = "reaper-image">
+        <img src = "./assets/bosses/grenadeguy_sprite_sheet_test.png" id = "grenadeguy-image">
+        <img src = "./assets/bosses/reaper_projectile.png" id = "reaper-projectile-image">
+        <img src = "./assets/bosses/grenadeguy_projectile.png" id = "grenadeguy-projectile-image">
+        <img src = "./assets/bosses/mini_explosion.png" id = "boss-mini-explosion-image">
+        <img src = "./assets/bosses/grenade_explosion_sprite_sheet.png" id = "grenade-explosion-image">
+
+        <!-- This is for image for obstacles-->
+        <img src = "./assets/obstacles/fire.png" id = "fire-wall-image">
+
+        <!-- This is for image for hitting slashes-->
+        <img src = "./assets/projectile_pack/getting_hit_slash1.png" id = "slash1">
+        <img src = "./assets/projectile_pack/getting_hit_slash2.png" id = "slash2">
+        <img src = "./assets/projectile_pack/getting_hit_slash3.png" id = "slash3">
+
+        <!-- This is for image for buttons-->
+        <img src = "./assets/starting_screen/Shift-Key.png" id = "shift-key-image">
+        <img src = "./assets/starting_screen/Space-Key.png" id = "space-key-image">
+        <img src = "./assets/starting_screen/Z-Key.png" id = "z-key-image">
+
+        <!-- This is audio for player-->
+        <audio src = "./assets/player_pack/death_sound.wav" volume = "1" id = "player-death-sound"></audio>
+        <audio src = "./assets/player_pack/getting_hit_sound.wav" volume = "1" id = "player-getting-hit-sound"></audio>
+        
+        <!-- THis is the audio for player projectiles -->
+        <audio src = "./assets/projectile_pack/projectile1_sound.wav" volume = "1" id = "projectile1-sound"></audio>
+        <audio src = "./assets/projectile_pack/projectile2_sound.wav" volume = "1" id = "projectile2-sound"></audio>
+        <audio src = "./assets/projectile_pack/projectile3_sound.wav" volume = "1" id = "projectile3-sound"></audio>
+        <audio src = "./assets/projectile_pack/laser_sound.wav" volume = "1" id = "laser-sound"></audio>
+        <audio src = "./assets/projectile_pack/projectile1_explosion_sound.wav" volume = "0.1" id = "projectile1-explosion-sound"></audio>
+        <audio src = "./assets/projectile_pack/projectile2_explosion_sound.wav" volume = "0.1" id = "projectile2-explosion-sound"></audio>
+        <audio src = "./assets/projectile_pack/projectile3_explosion_sound.wav" volume = "0.1" id = "projectile3-explosion-sound"></audio>
+        <audio src = "./assets/projectile_pack/laser_charging_sound.wav" volume = "1" id = "laser-charging-sound"></audio>
+        
+        <!-- THis is the audio for dropping items -->
+        <audio src = "./assets/dropping_items/health_potion_sound.wav" volume = "0.4" id = "health-sound"></audio>
+        <audio src = "./assets/dropping_items/mana_potion_sound.wav" volume = "0.4" id = "mana-sound"></audio>
+        <audio src = "./assets/dropping_items/attack_upgrade_sound.wav" volume = "0.3" id = "attack-upgrade-sound"></audio>
+        <audio src = "./assets/dropping_items/pierce_upgrade_sound.wav" volume = "0.3" id = "pierce-upgrade-sound"></audio>
+        <!-- This is audio and image for enemies -->
+        <img src = "./assets/ghost_pack/sprite_sheet.png" id = "ghost-image">
+        <img src = "./assets/demon_pack/sprite_sheet.png" id = "demon-image">
+        <img src = "./assets/rocket_pack/sprite_sheet.png" id = "rocket-image">
+        <img src = "./assets/bird_pack/sprite_sheet.png" id = "bird-image">
+        <img src = "./assets/bowling_pack/sprite_sheet.png" id = "bowling-image">
+        <img src = "./assets/bullet_pack/sprite_sheet.png" id = "bullet-image">
+
+        <img src = "./assets/ghost_pack/explosion_sprite_sheet.png" id = "ghost-death-image">
+        <img src = "./assets/demon_pack/explosion_sprite_sheet.png" id = "demon-death-image">
+        <img src = "./assets/rocket_pack/explosion_sprite_sheet.png" id = "rocket-death-image">
+        <img src = "./assets/bird_pack/explosion_sprite_sheet.png" id = "bird-death-image">
+        <img src = "./assets/bowling_pack/explosion_sprite_sheet.png" id = "bowling-death-image">
+
+        <audio src = "./assets/sound_pack/ghost_sound.wav" volume = "1" id = "ghost-sound"></audio>
+        <audio src = "./assets/sound_pack/demon_sound.mp3" volume = "1" id = "demon-sound"></audio>
+        <audio src = "./assets/sound_pack/rocket_sound.wav" volume = "1" id = "rocket-sound"></audio>
+        <audio src = "./assets/sound_pack/bird_sound.mp3" volume = "1" id = "bird-sound"></audio>
+        <audio src = "./assets/sound_pack/bowling_sound.wav" volume = "1" id = "bowling-sound"></audio>
+        
+        <!-- This is audio for obstacle -->
+        <audio src = "./assets/obstacles/fire-wall-sound.wav" volume = "0.3" id = "fire-wall-sound"></audio>
+
+        <!-- This is audio for boss -->
+        <audio src = "./assets/bosses/reaper_death_explosion_sound.wav" volume = "0.5" id = "reaper-death-sound"></audio>
+        <audio src = "./assets/bosses/grenadeguy_death_sound.wav" volume = "0.5" id = "grenadeguy-death-sound"></audio>
+        <audio src = "./assets/bosses/reaperbot_boomerang_sound.wav" volume = "0.5" id = "reaperbot-projectile-sound"></audio>
+        <audio src = "./assets/bosses/grenadeguy_launch_sound.wav" volume = "0.5" id = "grenadeguy-launch-sound"></audio>
+        <audio src = "./assets/bosses/grenadeguy_projectile_explosion_sound.wav" volume = "0.5" id = "grenadeguy-projectile-explosion-sound"></audio>
+
+        <!-- Music for the game -->
+        <audio src = "./assets/sound_pack/ingame_sound.wav" volume = "1" id = "ingame-sound">
+        <audio src = "./assets/sound_pack/ending_screen_sound.wav" volume = "1" id = "ending-screen-sound">
+        <audio src = "./assets/sound_pack/starting_screen_sound.wav" volume = "1" id = "starting-screen-sound"></audio>
+        <audio src = "./assets/sound_pack/any_key_pressed_sound.wav" volume = "1" id = "any-key-pressed-sound"></audio>
+    </div>
+</body>
+</html>
+
