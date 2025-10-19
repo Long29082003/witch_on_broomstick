@@ -1,4 +1,5 @@
-This game is made as a small project to better learn JavaScript.
+Hi, I am a beginner in programming.
+This game is made as a small project for me to better learn JavaScript. All assets I used mainly come from OpenGameArt.org
 
 Below is the list and link to all free resources used in the game:
 
