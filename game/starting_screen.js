@@ -270,7 +270,7 @@ class ShootingAnimation {
         //* Words
         this.ctx.save();
         this.ctx.textAlign = "center";
-        this.ctx.font = "30px PressStart2P";
+        this.ctx.font = "28px PressStart2P";
         this.ctx.fillStyle = "white";
         this.ctx.fillText("Press [Z] to Shoot", this.playerImage.x + 125, this.playerImage.y - 110);
         this.ctx.restore();
@@ -349,7 +349,7 @@ class DashingAnimation {
         //* Words
         this.ctx.save();
         this.ctx.textAlign = "center";
-        this.ctx.font = "30px PressStart2P";
+        this.ctx.font = "28px PressStart2P";
         this.ctx.fillStyle = "white"
         this.ctx.fillText("Press [Shift] to Dash", this.wordPosition, 340);
         this.dashingAnimationList.forEach(dashAnimation => dashAnimation.draw());
@@ -401,7 +401,7 @@ class ChargingAnimation {
         //* Words
         this.ctx.save();
         this.ctx.textAlign = "center";
-        this.ctx.font = "30px PressStart2P";
+        this.ctx.font = "28px PressStart2P";
         this.ctx.fillStyle = "white";
         this.ctx.fillText("Press [Space] for Laser", this.playerImage.x + 125, this.playerImage.y - 110);
         this.ctx.restore();
