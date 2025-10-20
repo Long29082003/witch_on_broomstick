@@ -78,10 +78,10 @@ export class EndingScreen {
         const second = Math.round((this.surviveTime / 1000) % 60);
         this.ctx.save();
         this.ctx.textAlign = "center";
-        this.ctx.font = "45px PressStart2P";
+        this.ctx.font = "23.4px PressStart2P";
         this.ctx.fillStyle = "gray";
         this.ctx.strokeStyle = "white";
-        this.ctx.lineWidth = 10;
+        this.ctx.lineWidth = 5.2;
         this.ctx.beginPath();
         this.ctx.moveTo(this.canvasWidth * 1.8 / 8, this.canvasHeight * 0.05);
         this.ctx.lineTo(this.canvasWidth * 6.2 / 8, this.canvasHeight * 0.05);
@@ -97,7 +97,7 @@ export class EndingScreen {
 
         this.ctx.save();
         this.ctx.textAlign = "center";
-        this.ctx.font = "50px PressStart2P";
+        this.ctx.font = "26px PressStart2P";
         this.ctx.fillStyle = "white";
         this.ctx.fillText("Press ANY KEY to restart", this.canvasWidth / 2 + 2, this.canvasHeight * 0.94 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 3 + 2);
         this.ctx.fillStyle = this.wordColorList[this.wordColorIndex];
@@ -121,11 +121,11 @@ class GhostImage {
         this.spriteWidth = 132;
         this.spriteHeight = 180;
         this.numberOfFrame = 8;
-        this.width = 160;
+        this.width = 83;
         this.height = (this.spriteHeight / this.spriteWidth) * this.width;
         this.frame = 0;
         this.x = this.canvasWidth / 8;
-        this.y = 210;
+        this.y = 109;
         this.killCount = 0;
 
         this.timeFromLastFrame = 0;
@@ -162,11 +162,11 @@ class GhostImage {
         //* Words
         this.ctx.save();
         this.ctx.textAlign = "center";
-        this.ctx.font = "38px PressStart2P";
+        this.ctx.font = "19.76px PressStart2P";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText(`${this.killCount}`, this.x + 91, this.y + 301 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
+        this.ctx.fillText(`${this.killCount}`, this.x + 47.3, this.y + 156.5 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
         this.ctx.fillStyle = "gray";
-        this.ctx.fillText(`${this.killCount}`, this.x + 90, this.y + 300 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
+        this.ctx.fillText(`${this.killCount}`, this.x + 46.3, this.y + 155.5 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
         this.ctx.restore();
     };
 };
@@ -181,11 +181,11 @@ class DemonImage {
         this.spriteWidth = 267;
         this.spriteHeight = 161;
         this.numberOfFrame = 7;
-        this.width = 250;
+        this.width = 130;
         this.height = (this.spriteHeight / this.spriteWidth) * this.width;
         this.frame = 0;
         this.x = this.canvasWidth * 2.2 / 8;
-        this.y = 240;
+        this.y = 124.8;
         this.killCount = 0;
 
         this.timeFromLastFrame = 0;
@@ -222,11 +222,11 @@ class DemonImage {
         //* Words
         this.ctx.save();
         this.ctx.textAlign = "center";
-        this.ctx.font = "38px PressStart2P";
+        this.ctx.font = "19.76px PressStart2P";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText(`${this.killCount}`, this.x + 131, this.y + 271 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
+        this.ctx.fillText(`${this.killCount}`, this.x + 68, this.y + 141 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
         this.ctx.fillStyle = "yellow";
-        this.ctx.fillText(`${this.killCount}`, this.x + 130, this.y + 270 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
+        this.ctx.fillText(`${this.killCount}`, this.x + 67, this.y + 140 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
         this.ctx.restore();
     };
 };
@@ -241,11 +241,11 @@ class RocketImage {
         this.spriteWidth = 495;
         this.spriteHeight = 320;
         this.numberOfFrame = 2;
-        this.width = 280;
+        this.width = 146;
         this.height = (this.spriteHeight / this.spriteWidth) * this.width;
         this.frame = 0;
         this.x = this.canvasWidth * 3.7 / 8;
-        this.y = 230;
+        this.y = 120;
         this.killCount = 0;
 
         this.timeFromLastFrame = 0;
@@ -282,11 +282,11 @@ class RocketImage {
         //* Words
         this.ctx.save();
         this.ctx.textAlign = "center";
-        this.ctx.font = "38px PressStart2P";
+        this.ctx.font = "19.76px PressStart2P";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText(`${this.killCount}`, this.x + 131, this.y + 281 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
+        this.ctx.fillText(`${this.killCount}`, this.x + 68, this.y + 146 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
         this.ctx.fillStyle = "red";
-        this.ctx.fillText(`${this.killCount}`, this.x + 130, this.y + 280 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
+        this.ctx.fillText(`${this.killCount}`, this.x + 67, this.y + 145 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
         this.ctx.restore();
     };
 };
@@ -301,11 +301,11 @@ class BirdImage {
         this.spriteWidth = 133;
         this.spriteHeight = 86;
         this.numberOfFrame = 9;
-        this.width = 250;
+        this.width = 130;
         this.height = (this.spriteHeight / this.spriteWidth) * this.width;
         this.frame = 0;
         this.x = this.canvasWidth * 5.12 / 8;
-        this.y = 240;
+        this.y = 125;
         this.killCount = 0;
 
         this.timeFromLastFrame = 0;
@@ -342,11 +342,11 @@ class BirdImage {
         //* Words
         this.ctx.save();
         this.ctx.textAlign = "center";
-        this.ctx.font = "38px PressStart2P";
+        this.ctx.font = "19.76px PressStart2P";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText(`${this.killCount}`, this.x + 145, this.y + 270 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
+        this.ctx.fillText(`${this.killCount}`, this.x + 75.4, this.y + 140.4 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
         this.ctx.fillStyle = "purple";
-        this.ctx.fillText(`${this.killCount}`, this.x + 144, this.y + 269 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
+        this.ctx.fillText(`${this.killCount}`, this.x + 74.4, this.y + 141.4 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
         this.ctx.restore();
     };
 };
@@ -361,11 +361,11 @@ class BowlingImage {
         this.spriteWidth = 205;
         this.spriteHeight = 261;
         this.numberOfFrame = 8;
-        this.width = 145;
+        this.width = 75.4;
         this.height = (this.spriteHeight / this.spriteWidth) * this.width;
         this.frame = 0;
         this.x = this.canvasWidth * 6.55 / 8;
-        this.y = 220;
+        this.y = 114.4;
         this.killCount = 0;
 
         this.timeFromLastFrame = 0;
@@ -402,11 +402,11 @@ class BowlingImage {
         //* Words
         this.ctx.save();
         this.ctx.textAlign = "center";
-        this.ctx.font = "38px PressStart2P";
+        this.ctx.font = "19.76px PressStart2P";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText(`${this.killCount}`, this.x + 76, this.y + 291 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
+        this.ctx.fillText(`${this.killCount}`, this.x + 39.5, this.y + 151 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
         this.ctx.fillStyle = "rgb(80, 216, 25)";
-        this.ctx.fillText(`${this.killCount}`, this.x + 75, this.y + 290 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
+        this.ctx.fillText(`${this.killCount}`, this.x + 38.5, this.y + 150 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
         this.ctx.restore();
     };
 };
@@ -421,11 +421,11 @@ class BulletImage {
         this.spriteWidth = 422;
         this.spriteHeight = 224;
         this.numberOfFrame = 2;
-        this.width = 200;
+        this.width = 104;
         this.height = (this.spriteHeight / this.spriteWidth) * this.width;
         this.frame = 0;
         this.x = this.canvasWidth * 2 / 8;
-        this.y = 620;
+        this.y = 322.4;
         this.killCount = 0;
 
         this.timeFromLastFrame = 0;
@@ -462,11 +462,11 @@ class BulletImage {
         //* Words
         this.ctx.save();
         this.ctx.textAlign = "center";
-        this.ctx.font = "38px PressStart2P";
+        this.ctx.font = "19.76px PressStart2P";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText(`${this.killCount}`, this.x + 81, this.y + 216 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
+        this.ctx.fillText(`${this.killCount}`, this.x + 42, this.y + 112.3 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
         this.ctx.fillStyle = "gray";
-        this.ctx.fillText(`${this.killCount}`, this.x + 80, this.y + 215 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
+        this.ctx.fillText(`${this.killCount}`, this.x + 41, this.y + 111.3 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
         this.ctx.restore();
     };
 };
@@ -482,12 +482,12 @@ class ReaperImage {
         this.spriteHeight = 44;
         this.numberOfFrameX = 8;
         this.numberOfFrameY = 2;
-        this.width = 300;
+        this.width = 156;
         this.height = (this.spriteHeight / this.spriteWidth) * this.width;
         this.frameX = 0;
         this.frameY = 0;
         this.x = this.canvasWidth * 3.6 / 8;
-        this.y = 550;
+        this.y = 286;
         this.killCount = 0;
 
         this.timeFromLastFrame = 0;
@@ -528,11 +528,11 @@ class ReaperImage {
         //* Words
         this.ctx.save();
         this.ctx.textAlign = "center";
-        this.ctx.font = "44px PressStart2P";
+        this.ctx.font = "23px PressStart2P";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText(`${this.killCount}`, this.x + 171, this.y + 391 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
+        this.ctx.fillText(`${this.killCount}`, this.x + 89, this.y + 203.3 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
         this.ctx.fillStyle = "rgb(229, 36, 149)";
-        this.ctx.fillText(`${this.killCount}`, this.x + 170, this.y + 390 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
+        this.ctx.fillText(`${this.killCount}`, this.x + 88, this.y + 202.3 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
         this.ctx.restore();
     };
 };
@@ -549,11 +549,11 @@ class GrenadeGuyImage {
         this.spriteHeight = 31.5;
         this.numberOfFrame = 8;
 
-        this.width = 300;
+        this.width = 156;
         this.height = (this.spriteHeight / this.spriteWidth) * this.width;
         this.frame = 0;
         this.x = this.canvasWidth * 5.5 / 8;
-        this.y = 550;
+        this.y = 286;
         this.killCount = 0;
 
         this.timeFromLastFrame = 0;
@@ -590,11 +590,11 @@ class GrenadeGuyImage {
         //* Words
         this.ctx.save();
         this.ctx.textAlign = "center";
-        this.ctx.font = "44px PressStart2P";
+        this.ctx.font = "23px PressStart2P";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText(`${this.killCount}`, this.x + 171, this.y + 391 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
+        this.ctx.fillText(`${this.killCount}`, this.x + 89, this.y + 203.3 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
         this.ctx.fillStyle = "rgb(249, 228, 168)";
-        this.ctx.fillText(`${this.killCount}`, this.x + 170, this.y + 390 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
+        this.ctx.fillText(`${this.killCount}`, this.x + 88, this.y + 202.3 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
         this.ctx.restore();
     };
 };

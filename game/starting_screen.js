@@ -6,7 +6,8 @@ export class StartingScreen {
         
         this.animations = [new ShootingAnimation(this.ctx, this.canvasWidth, this.canvasHeight), 
                 new DashingAnimation(this.ctx, this.canvasWidth, this.canvasHeight), 
-                new ChargingAnimation(this.ctx, this.canvasWidth, this.canvasHeight)
+                new ChargingAnimation(this.ctx, this.canvasWidth, this.canvasHeight),
+                new WasdKey(this.ctx, this.canvasWidth, this.canvasHeight),
         ];
 
         this.wordDeltaFrameList = [0, 1, 2, 3, 2, 1, 0];
@@ -44,11 +45,11 @@ export class StartingScreen {
         //* Words
         this.ctx.save();
         this.ctx.textAlign = "center";
-        this.ctx.font = "44px PressStart2P";
+        this.ctx.font = "22.88px PressStart2P";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText("Press Any Key to start", this.canvasWidth / 2 + 3, (180 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 5) + 3)
+        this.ctx.fillText("Press Any Key to start", this.canvasWidth / 2, 93.6 + this.wordDeltaFrameList[this.wordDeltaFrameIndex])
         this.ctx.fillStyle = "rgb(118, 39, 183)";
-        this.ctx.fillText("Press Any Key to start", this.canvasWidth / 2, 180 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 5);
+        this.ctx.fillText("Press Any Key to start", this.canvasWidth / 2, 93.6 + this.wordDeltaFrameList[this.wordDeltaFrameIndex] * 2);
         this.ctx.restore();
     };
 
@@ -62,7 +63,7 @@ class PlayerImage {
         this.image = document.getElementById("player-image");
         this.spriteWidth = 46;
         this.spriteHeight = 68;
-        this.scale = 3;
+        this.scale = 1.56;
         this.ctx = ctx;
 
         this.x = x;
@@ -104,7 +105,7 @@ class DashingPlayerImage {
         this.image = document.getElementById("player-image")
         this.spriteWidth = 46;
         this.spriteHeight = 68;
-        this.scale = 3;
+        this.scale = 1.56;
         this.width = this.spriteWidth * this.scale;
         this.height = this.spriteHeight * this.scale;
         this.x = this.playerImage.x;
@@ -141,13 +142,13 @@ class ProjectileImage {
         this.numberOfFrame = 6;
         this.spriteWidth = 154;
         this.spriteHeight = 59;
-        this.width = this.spriteWidth * 1.5;
-        this.height = this.spriteHeight * 1.5;
-        //Hitbox x larger than x by 109
-        this.x = this.playerImage.x - 50;
-        this.speedX = 1;
-        this.acceleration = 0.1;
-        this.y = this.playerImage.y + 30;
+        this.width = this.spriteWidth * 0.78;
+        this.height = this.spriteHeight * 0.78;
+
+        this.x = this.playerImage.x - 26;
+        this.speedX = 0.52;
+        this.acceleration = 0.052;
+        this.y = this.playerImage.y + 15.6;
         this.frame = 0;
         
         this.timeFromLastFrame = 0;
@@ -179,8 +180,8 @@ export class LaserChargingEffectImage {
         this.numberOfFrameY = 7;
         this.spriteWidth = 125;
         this.spriteHeight = 107.14;
-        this.width = this.playerImage.width * 1.2;
-        this.height = this.playerImage.height * 1.2;
+        this.width = this.playerImage.width * 0.62;
+        this.height = this.playerImage.height * 0.62;
         this.x = this.playerImage.x + this.playerImage.width/2;
         this.y = this.playerImage.y + this.playerImage.height/2;
         this.frameX = 0;
@@ -222,21 +223,21 @@ class ShootingAnimation {
         this.ctx = ctx;
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
-        this.playerImage = new PlayerImage(this.ctx, this.canvasWidth, this.canvasHeight, this.canvasWidth * 0.11, 450);
+        this.playerImage = new PlayerImage(this.ctx, this.canvasWidth, this.canvasHeight, this.canvasWidth * 0.11, 234);
         this.projectileImage = new ProjectileImage(this.ctx, this.canvasWidth, this.canvasHeight, this.playerImage);
 
-        this.buttonImage = document.getElementById("z-key-image");
-        this.buttonX = this.playerImage.x + 100;
-        this.buttonY = this.playerImage.y + this.playerImage.height + 50;
+        this.buttonImage = document.getElementById("j-key-image");
+        this.buttonX = this.playerImage.x + 52;
+        this.buttonY = this.playerImage.y + this.playerImage.height + 26;
         this.buttonSpriteWidth = 32;
         this.buttonSpriteHeight = 27;
-        this.buttonWidth = 100;
+        this.buttonWidth = 52;
         this.buttonHeight = (this.buttonSpriteHeight / this.buttonSpriteWidth) * this.buttonWidth;
         this.buttonFrame = 0;
         
         this.buttonTimeFromLastFrame = 0;
         this.intervalToChangeButtonFrame = 1000;
-        this.pointToResetProjectile = 500;
+        this.pointToResetProjectile = 260;
         this.timeLeftToNotShowProjectileImage = 0;
     };
 
@@ -259,8 +260,8 @@ class ShootingAnimation {
         };
         if (this.projectileImage.x >= this.pointToResetProjectile) {
             this.timeLeftToNotShowProjectileImage = 1000;
-            this.projectileImage.x = 350;
-            this.projectileImage.speedX = 1;
+            this.projectileImage.x = this.playerImage.x - 26;
+            this.projectileImage.speedX = 0.52;
         };
 
         this.timeLeftToNotShowProjectileImage -= deltaTime;
@@ -270,9 +271,9 @@ class ShootingAnimation {
         //* Words
         this.ctx.save();
         this.ctx.textAlign = "center";
-        this.ctx.font = "28px PressStart2P";
+        this.ctx.font = "13.52px PressStart2P";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText("Press [Z] to Shoot", this.playerImage.x + 125, this.playerImage.y - 110);
+        this.ctx.fillText("Press [Z] to Shoot", this.playerImage.x + 65, this.playerImage.y - 57.2);
         this.ctx.restore();
         //? Images
         this.playerImage.draw();
@@ -286,24 +287,24 @@ class DashingAnimation {
         this.ctx = ctx;
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
-        this.playerImage = new PlayerImage(this.ctx, this.canvasWidth, this.canvasHeight, this.canvasWidth * 0.32, 450);
+        this.playerImage = new PlayerImage(this.ctx, this.canvasWidth, this.canvasHeight, this.canvasWidth * 0.32, 234);
         this.dashingAnimationList = [];
-        this.wordPosition = this.playerImage.x + 365;
+        this.wordPosition = this.playerImage.x + 190;
 
-        this.playerSpeed = 5;
+        this.playerSpeed = 2.6;
         this.isGoingForward = true;
-        this.pointOfGoingForward = 850;
-        this.pointOfTurningBack = 1300;
+        this.pointOfGoingForward = 442;
+        this.pointOfTurningBack = 676;
         this.timeFromLastSpawnDashAnimation = 0;
         this.timeToSpawnDashAnimation = 150;
 
         this.buttonImage = document.getElementById("shift-key-image");
-        this.buttonX = this.playerImage.x + 300;
-        this.buttonY = this.playerImage.y + this.playerImage.height + 50;
+        this.buttonX = this.playerImage.x + 156;
+        this.buttonY = this.playerImage.y + this.playerImage.height + 26;
         this.buttonSpriteWidth = 48;
         this.buttonSpriteHeight = 27;
-        this.buttonWidth = 200;
-        this.buttonHeight = 85;
+        this.buttonWidth = 104;
+        this.buttonHeight = 44.2;
         this.buttonFrame = 1;
         
         this.buttonTimeFromLastFrame = 0;
@@ -323,7 +324,7 @@ class DashingAnimation {
         };
 
         //? Handle movement
-        this.playerSpeed = this.isGoingForward ?  5 : -2.9;
+        this.playerSpeed = this.isGoingForward ? 2.6 : -1.5;
         this.playerImage.x += this.playerSpeed;
 
         if (this.isGoingForward && this.playerImage.x >= this.pointOfTurningBack) {
@@ -349,9 +350,9 @@ class DashingAnimation {
         //* Words
         this.ctx.save();
         this.ctx.textAlign = "center";
-        this.ctx.font = "28px PressStart2P";
+        this.ctx.font = "13.52px PressStart2P";
         this.ctx.fillStyle = "white"
-        this.ctx.fillText("Press [Shift] to Dash", this.wordPosition, 340);
+        this.ctx.fillText("Press [Shift] to Dash", this.wordPosition, 176.8);
         this.dashingAnimationList.forEach(dashAnimation => dashAnimation.draw());
         this.ctx.restore();
 
@@ -369,16 +370,16 @@ class ChargingAnimation {
         this.ctx = ctx;
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
-        this.playerImage = new PlayerImage(this.ctx, this.canvasWidth, this.canvasHeight, this.canvasWidth * 0.77, 450);
+        this.playerImage = new PlayerImage(this.ctx, this.canvasWidth, this.canvasHeight, this.canvasWidth * 0.77, 234);
         this.laserCharingEffect = new LaserChargingEffectImage(this.ctx, this.canvasWidth, this.canvasHeight, this.playerImage);
 
         this.buttonImage = document.getElementById("space-key-image");
         this.buttonX = this.playerImage.x;
-        this.buttonY = this.playerImage.y + this.playerImage.height + 50;
+        this.buttonY = this.playerImage.y + this.playerImage.height + 26;
         this.buttonSpriteWidth = 64;
         this.buttonSpriteHeight = 27;
-        this.buttonWidth = 200;
-        this.buttonHeight = 85;
+        this.buttonWidth = 104;
+        this.buttonHeight = 44.2;
         this.buttonFrame = 0;
         
         this.buttonTimeFromLastFrame = 0;
@@ -401,15 +402,63 @@ class ChargingAnimation {
         //* Words
         this.ctx.save();
         this.ctx.textAlign = "center";
-        this.ctx.font = "28px PressStart2P";
+        this.ctx.font = "13.52px PressStart2P";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText("Press [Space] for Laser", this.playerImage.x + 125, this.playerImage.y - 110);
+        this.ctx.fillText("Press [Space] for Laser", this.playerImage.x + 65, this.playerImage.y - 57.2);
         this.ctx.restore();
 
         this.playerImage.draw();
         this.laserCharingEffect.draw();
         //Button
         this.ctx.drawImage(this.buttonImage, this.buttonFrame * this.buttonSpriteWidth, 0, this.buttonSpriteWidth, this.buttonSpriteHeight, this.buttonX, this.buttonY, this.buttonWidth, this.buttonHeight);
+    };
+};
+
+class WasdKey {
+    constructor (ctx, canvasWidth, canvasHeight) {
+        this.ctx = ctx;
+        this.canvasWidth = canvasWidth;
+        this.canvasHeight = canvasHeight;
+        
+        this.buttonsImages = {
+            "w" : document.getElementById("w-key-image"),
+            "a" : document.getElementById("a-key-image"),
+            "s" : document.getElementById("s-key-image"),
+            "d" : document.getElementById("d-key-image"),
+        };
+        this.buttonSpriteWidth = 32;
+        this.buttonSpriteHeight = 27;
+        this.buttonWidth = 52;
+        this.buttonHeight = (this.buttonSpriteHeight / this.buttonSpriteWidth) * this.buttonWidth;
+        this.buttonFrame = 0;
+
+        this.buttonTimeFromLastFrame = 0;
+        this.intervalToChangeButtonFrame = 1000;
+    };
+
+    update(deltaTime) {
+        if (this.buttonTimeFromLastFrame > this.intervalToChangeButtonFrame) {
+            this.buttonFrame++;
+            if (this.buttonFrame > 1) this.buttonFrame = 0;
+            this.buttonTimeFromLastFrame = 0;
+        } else {
+            this.buttonTimeFromLastFrame += deltaTime;
+        };
+    };
+
+    draw() {
+        //* Button images
+        this.ctx.drawImage(this.buttonsImages["w"], this.buttonFrame * this.buttonSpriteWidth, 0, this.buttonSpriteWidth, this.buttonSpriteHeight, this.canvasWidth*2.9/8, this.canvasHeight * 7.6 / 10, this.buttonWidth, this.buttonHeight);
+        this.ctx.drawImage(this.buttonsImages["a"], this.buttonFrame * this.buttonSpriteWidth, 0, this.buttonSpriteWidth, this.buttonSpriteHeight, this.canvasWidth*2.55/8, this.canvasHeight * 8.3 / 10, this.buttonWidth, this.buttonHeight);
+        this.ctx.drawImage(this.buttonsImages["s"], this.buttonFrame * this.buttonSpriteWidth, 0, this.buttonSpriteWidth, this.buttonSpriteHeight, this.canvasWidth*2.9/8, this.canvasHeight * 8.3 / 10, this.buttonWidth, this.buttonHeight);
+        this.ctx.drawImage(this.buttonsImages["d"], this.buttonFrame * this.buttonSpriteWidth, 0, this.buttonSpriteWidth, this.buttonSpriteHeight, this.canvasWidth*3.25/8, this.canvasHeight * 8.3 / 10, this.buttonWidth, this.buttonHeight);
+
+        //* Words
+        this.ctx.save();
+        this.ctx.font = "15px PressStart2P";
+        this.ctx.fillStyle = "white";
+        this.ctx.fillText("[WASD] to move around", this.canvasWidth * 3.9 / 8, this.canvasHeight * 8.5 / 10);
+        this.ctx.restore();
     };
 };
 

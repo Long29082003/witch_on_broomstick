@@ -52,10 +52,10 @@ export class Explosion {
 
         //? Draw point
         this.ctx.save();
-        this.ctx.font = "35px PressStart2P";
+        this.ctx.font = "18.2px PressStart2P";
         this.ctx.fillStyle = "black";
         this.ctx.textAlign = "center";
-        this.ctx.fillText("+" + this.point, this.x + 5, this.y + this.height + 10);
+        this.ctx.fillText("+" + this.point, this.x + 2, this.y + this.height + 5);
         if (this.name === "ghost" || "bullet") {
             this.ctx.fillStyle = "gray";
         } else if (this.name === "demon") {
@@ -66,8 +66,7 @@ export class Explosion {
             this.ctx.fillStyle = "purple";
         } else if (this.name === "bowling") {
             this.ctx.fillStyle = "green";
-        }
-        ;
+        };
         this.ctx.textAlign = "center";
         this.ctx.fillText("+" + this.point, this.x, this.y + this.height + 5);
         this.ctx.restore();
@@ -79,13 +78,13 @@ export class PlayerExplosion {
         this.game = game;
         this.ctx = this.game.ctx;
         this.player = player;
-        this.radius = Math.random() * 20 + 15;
+        this.radius = Math.random() * 10.4 + 7.8;
         this.x = this.player.x - this.radius +  Math.random() * this.player.width;
         this.y = this.player.y - this.radius + Math.random() * this.player.height;
         this.color = `rgb(${Math.random() * 9 + 236}, ${Math.random() * 34 + 203}, ${Math.random() * 80 + 142})`;
         this.transparent = Math.random() * 0.5 + 0.5;
-        this.speed = -(Math.random() * 0.5 + 1);
-        this.acceleration = -(Math.random() * 0.05);
+        this.speed = -(Math.random() * 0.5 + 1) * 0.52;
+        this.acceleration = -(Math.random() * 0.05) * 0.52;
 
         this.markedForDeletion = false;
     };
@@ -130,27 +129,27 @@ export class BossExplosion {
         this.fonts = [
             {
                 color: "rgb(207, 23, 23)",
-                size: 40,
+                size: 20.8,
             },
             {
                 color: "white",
-                size: 40,
+                size: 20.8,
             },
             {
                 color: "rgb(205, 58, 127)",
-                size: 60,
+                size: 31.2,
             },
             {
                 color: "blue",
-                size: 60,
+                size: 31.2,
             },
             {
                 color: "black",
-                size: 80,
+                size: 41.6,
             },
             {
                 color: "rgb(231, 205, 71)",
-                size: 80,
+                size: 41.6,
             },
         ];
         this.fontIndex = 0;
@@ -195,7 +194,7 @@ export class BossExplosion {
             this.ctx.font = `${this.fonts[this.fontIndex].size}px PressStart2P`;
             this.ctx.textAlign = "center";
             this.ctx.fillStyle = "black";
-            this.ctx.fillText("20000!", 5, 5);
+            this.ctx.fillText("20000!", 2, 2);
             this.ctx.fillStyle = this.fonts[this.fontIndex].color;
             this.ctx.fillText("20000!", 0, 0);
             this.ctx.restore();
@@ -211,10 +210,10 @@ class BossMiniExplosion {
         this.spriteWidth = 34;
         this.spriteHeight = 35;
         this.numberOfFrame = 7;
-        this.width = 150;
-        this.height = 150
-        this.x = Math.random() * 350 + (this.bossExplosion.x - 30);
-        this.y = Math.random() * 350 + (this.bossExplosion.y - 20);
+        this.width = 78;
+        this.height = 78;
+        this.x = Math.random() * 182 + (this.bossExplosion.x - 15.2);
+        this.y = Math.random() * 182 + (this.bossExplosion.y - 10.1);
         this.frame = 0;
 
         this.timeFromLastFrame = 0;
@@ -246,7 +245,7 @@ export class GrenadeExplosion {
         this.image = grenadeExplosionImage;
         this.spriteWidth = 34;
         this.spriteHeight = 35;
-        this.width = 300;
+        this.width = 156;
         this.height = (this.spriteHeight / this.spriteWidth) * this.width;
         this.x = this.grenade.x + this.grenade.width / 2;
         this.y = this.grenade.y + this.grenade.height / 2;
@@ -373,8 +372,8 @@ export class Projectile3Explosion {
         this.y = this.enemy.y + this.enemy.height / 2;
         this.spriteWidth = 240;
         this.spriteHeight = 240;
-        this.width = 500;
-        this.height = 500;
+        this.width = 260;
+        this.height = 260;
         this.rotationAngle = Math.random() * Math.PI * 2;
         this.frameX = 0;
         this.frameY = 0;
@@ -441,8 +440,8 @@ export class Projectile2Explosion {
         this.numberOfFrame = 11;
         this.spriteWidth = 127;
         this.spriteHeight = 87;
-        this.width = 700;
-        this.height = 700;
+        this.width = 364;
+        this.height = 364;
         this.x = this.projectile.x + this.projectile.width;
         this.y = this.projectile.y + this.projectile.height / 2;
         this.frame = 0;
@@ -502,8 +501,8 @@ export class Projectile1Explosion {
         this.numberOfFrame = 11;
         this.x = this.projectile.x + this.projectile.width;
         this.y = this.projectile.y + this.projectile.height / 2;
-        this.width = 300;
-        this.height = 300;
+        this.width = 156;
+        this.height = 156;
         this.damage = 1;
         this.frame = 0;
 

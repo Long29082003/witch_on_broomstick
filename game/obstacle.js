@@ -14,13 +14,13 @@ export class FireWall {
         this.spriteWidth = 32;
         this.spriteHeight = 32;
         this.isFullScreenHeight = isFullScreenHeight;
-        this.width = 100;
+        this.width = 52;
         this.numberOfFlame = isFullScreenHeight ? 16 : Math.floor(Math.random() * 6) + 6; 
-        this.height = 100;
+        this.height = 52;
         this.x = this.game.canvasWidth + 50;
-        this.y = isFullScreenHeight ? 20 : Math.random() * 500 + 50;
+        this.y = isFullScreenHeight ? 10 : Math.random() * 260 + 27;
         this.frame = new Array(this.numberOfFlame).fill(0).map((position) => Math.floor(Math.random() * 3));
-        this.speed = this.game.normalize(2) * xSpeedScale;
+        this.speed = this.game.normalize(2) * xSpeedScale * 0.52;
 
         this.timeFromLastFrame = 0;
         this.intervalToChangeFrame = 50;

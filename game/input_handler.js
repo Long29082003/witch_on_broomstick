@@ -4,45 +4,45 @@ const playerEvents = () => {
 export default class InputHandler {
     constructor() {
         this.keyPressed = {
-            "ArrowUp" : false,
-            "ArrowDown" : false,
-            "ArrowLeft" : false,
-            "ArrowRight" : false,
+            "w" : false,
+            "s" : false,
+            "a" : false,
+            "d" : false,
             " " : false,
-            "z" : false,
-            "Shift" : false,
+            "j" : false,
+            "shift" : false,
         };
         
         this.shiftLock = false;
-        this.gameStage = "waiting input";
+        this.gameStage = "";
 
         this.startingScreen;
         this.endingScreen;
 
         window.addEventListener("keydown", (event) => {
             if (this.gameStage === "gaming") {
-                switch (event.key) {
-                case "ArrowUp":
-                    this.keyPressed["ArrowUp"] = true;
-                    break;
-                case "ArrowDown":
-                    this.keyPressed["ArrowDown"] = true;
-                    break;
-                case "ArrowLeft":
-                    this.keyPressed["ArrowLeft"] = true;
-                    break;
-                case "ArrowRight":
-                    this.keyPressed["ArrowRight"] = true;
-                    break;
-                case " ":
-                    this.keyPressed[" "] = true;
-                    break;
-                case "z":
-                    this.keyPressed["z"] = true;
-                    break;
-                case "Shift":
-                    if (!this.shiftLock) this.keyPressed["Shift"] = true;
-                    break;
+                switch (event.key.toLowerCase()) {
+                    case "w":
+                        this.keyPressed["w"] = true;
+                        break;
+                    case "s":
+                        this.keyPressed["s"] = true;
+                        break;
+                    case "a":
+                        this.keyPressed["a"] = true;
+                        break;
+                    case "d":
+                        this.keyPressed["d"] = true;
+                        break;
+                    case " ":
+                        this.keyPressed[" "] = true;
+                        break;
+                    case "j":
+                        this.keyPressed["j"] = true;
+                        break;
+                    case "shift":
+                        if (!this.shiftLock) this.keyPressed["shift"] = true;
+                        break;
                 };    
             } else if (this.gameStage === "waiting input") {
                 this.startingScreen.moveToGameScreen = true;
@@ -52,27 +52,27 @@ export default class InputHandler {
 
         window.addEventListener("keyup", (event) => {
             if (this.gameStage === "gaming") {
-                switch (event.key) {
-                case "ArrowUp":
-                    this.keyPressed["ArrowUp"] = false;
+                switch (event.key.toLowerCase()) {
+                case "w":
+                    this.keyPressed["w"] = false;
                     break;
-                case "ArrowDown":
-                    this.keyPressed["ArrowDown"] = false;
+                case "s":
+                    this.keyPressed["s"] = false;
                     break;
-                case "ArrowLeft":
-                    this.keyPressed["ArrowLeft"] = false;
+                case "a":
+                    this.keyPressed["a"] = false;
                     break;
-                case "ArrowRight":
-                    this.keyPressed["ArrowRight"] = false;
+                case "d":
+                    this.keyPressed["d"] = false;
                     break;
                 case " ":
                     this.keyPressed[" "] = false;
                     break;
-                case "z":
-                    this.keyPressed["z"] = false;
+                case "j":
+                    this.keyPressed["j"] = false;
                     break;
-                case "Shift":
-                    this.keyPressed["Shift"] = false;
+                case "shift":
+                    this.keyPressed["shift"] = false;
                     break;
                 };
             };

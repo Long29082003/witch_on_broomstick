@@ -18,8 +18,8 @@ const startingScreenCtx = startingScreenElement.getContext("2d");
 const endingScreenElement = document.getElementById("ending-screen");
 const endingScreenCtx = endingScreenElement.getContext("2d");
 
-const canvasWidth = canvas.width = startingScreenElement.width = endingScreenElement.width = window.innerWidth;
-const canvasHeight = canvas.height = startingScreenElement.height = endingScreenElement.height = window.innerHeight;
+const canvasWidth = canvas.width = startingScreenElement.width = endingScreenElement.width = 1200;
+const canvasHeight = canvas.height = startingScreenElement.height = endingScreenElement.height = 580;
 
 let savedTime = 0;
 
@@ -29,35 +29,35 @@ const layersLink = [
         image: document.getElementById("background-layer1"),
         width: 272,
         height: 160,
-        speed: 0.1,
+        speed: 0.1 * 0.52,
     },
     {
         name: "layer2",
         image: document.getElementById("background-layer2"),
         width: 272,
         height: 160,
-        speed: 0.5,
+        speed: 0.5 * 0.52,
     },
     {
         name: "layer3",
         image: document.getElementById("background-layer3"),
         width: 544,
         height: 160,
-        speed: 0.7,
+        speed: 0.7 * 0.52,
     },
     {
         name: "layer4",
         image: document.getElementById("background-layer4"),
         width: 544,
         height: 160,
-        speed: 0.9,
+        speed: 0.9 * 0.52,
     },
     {
         name: "layer5",
         image: document.getElementById("background-layer5"),
         width: 544,
         height: 160,
-        speed: 1.1,
+        speed: 1.1 * 0.52,
     },
 ];
 
@@ -604,11 +604,11 @@ class Game {
 
         //? Bird
         if (this.timeFromLastBirdAddition > this.currentEnemyStage[3].intervalToAdd && this.currentEnemyStage[3].enemy_left > 0) {
-            const y = Math.random() * 900 + 100;
-            const dy = Math.random() * 200 + 200;
+            const y = Math.random() * 468 + 52;
+            const dy = Math.random() * 104 + 104;
             const loopYPosition = y - dy;
-            const loopXPosition = Math.random() * 800 + 700;
-            const scale = Math.random() * 0.5 + 1.5; 
+            const loopXPosition = Math.random() * 416 + 364;
+            const scale = (Math.random() * 0.5 + 1.5) * 0.5; 
             addBirds(this.currentEnemyStage[3].number, y, loopXPosition, loopYPosition, scale, 500, this, this.currentEnemyStage[3].hp, this.enemyXSpeedScale[this.stagesList[this.stageIndex]]);
             this.timeFromLastBirdAddition = 0;
             this.currentEnemyStage[3].enemy_left--;
@@ -618,8 +618,8 @@ class Game {
 
         //? Bowling
         if (this.timeFromLastBowlingBallsAddition > this.currentEnemyStage[4].intervalToAdd && this.currentEnemyStage[4].enemy_left > 0) {
-            const y = Math.random() * 600 + 200;
-            addBowlingBalls(10, y, Math.random()*100 + 150, Math.random()*150 + 150, this, this.currentEnemyStage[4].hp);
+            const y = Math.random() * 312 + 104;
+            addBowlingBalls(10, y, Math.random()* 52 + 78, Math.random() * 78 + 78, this, this.currentEnemyStage[4].hp);
             this.timeFromLastBowlingBallsAddition = 0;
             this.currentEnemyStage[4].enemy_left--;
         } else {
@@ -745,7 +745,7 @@ class Layer {
         this.height = canvasHeight;
         this.spriteWidth = spriteWidth;
         this.spriteHeight = spriteHeight;
-        this.xSpeedSave = speed;
+        this.xSpeedSave = this.game.normalize(speed);
         this.xSpeed = this.xSpeedSave;
         this.image = image;
     };
@@ -783,11 +783,11 @@ const displayDamageScreen = (color) => {
 };
 
 const scoreDisplay = () => {
-    ctx.font = "bold 45px PressStart2P";
+    ctx.font = "bold 23px PressStart2P";
     ctx.fillStyle = "black";
-    ctx.fillText(`Score: ${game.score}`, 105, 105);
+    ctx.fillText(`Score: ${game.score}`, 55, 55);
     ctx.fillStyle = "white";
-    ctx.fillText(`Score: ${game.score}`, 100, 100);
+    ctx.fillText(`Score: ${game.score}`, 50, 50);
 };
 
 const filterOutMarkedMonster = (monsterList) => {
@@ -856,10 +856,12 @@ const animateStartingScreen = (timeStamp) => {
     startingScreen.draw();
 
     //? Check FPS 0.7 sec into browser
-    if (timeStamp > 300 && !game.fpsAlreadyChecked) {
+    if (timeStamp > 2000 && !game.fpsAlreadyChecked) {
         game.fpsAlreadyChecked = true;
         game.checkFramePerSecond(deltaTime);
-    };
+    } else if (timeStamp > 2100) {
+        input.gameStage = "waiting input";
+    }
 
     if (startingScreen.moveToGameScreen) {
         keyPressTransition(timeStamp + 1);
@@ -885,6 +887,7 @@ const animate = (timeStamp) => {
     const deltaTime = timeStamp - savedTime;
     savedTime = timeStamp;
 
+
     game.addEnemies(deltaTime, player);
     game.addItemDrop(deltaTime, player);
     game.addFireWall(deltaTime, player);
@@ -904,7 +907,7 @@ const animate = (timeStamp) => {
     if (game.timeToDisplayDamageScreen > 50) {
         displayDamageScreen("white");
     } else if (game.timeToDisplayDamageScreen > 0) {
-        displayDamageScreen("rgb(241, 80, 80)")
+        displayDamageScreen("rgb(241, 80, 80)");
     };
 
     game.timeToDisplayDamageScreen -= deltaTime;

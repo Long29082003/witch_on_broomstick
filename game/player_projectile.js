@@ -12,7 +12,7 @@ const projectiles = {
         image : projectile1Image,
         explosionImage : document.getElementById("level1-explosion-image"),
         damage : 10,
-        scale : 1.5,
+        scale : 0.78,
         acceleration : 0.12,
     },
     2 : {
@@ -20,7 +20,7 @@ const projectiles = {
         image : projectile2Image,
         explosionImage : document.getElementById("level2-explosion-image"),
         damage : 10,
-        scale: 2,
+        scale: 1.04,
         acceleration : 0.15,
     },
     3 : {
@@ -28,7 +28,7 @@ const projectiles = {
         image : projectile3Image,
         explosionImage : document.getElementById("level3-explosion-image"),
         damage : 10,
-        scale: 2.5,
+        scale: 1.3,
         acceleration : 0.3,
     },
 };
@@ -47,10 +47,10 @@ class Projectile {
         this.width = this.spriteWidth * this.level.scale;
         this.height = this.spriteHeight * this.level.scale;
         //Hitbox x larger than x by 109
-        this.x = this.player.x - 109;
-        this.y = this.player.y + 10;
-        this.speed = this.game.normalize(3);
-        this.acceleration = this.game.normalize(this.level.acceleration);
+        this.x = this.player.x - 47;
+        this.y = this.player.y + 5.2;
+        this.speed = this.game.normalize(3) * 0.52;
+        this.acceleration = this.game.normalize(this.level.acceleration) * 0.52;
         this.frame = 0;
         
 
@@ -78,10 +78,10 @@ class Projectile {
 export class Projectile1 extends Projectile {
     constructor(game, player) {
         super(game, player);
-        this.x = this.player.x - 130;
-        this.y = this.player.y + 25;
+        this.x = this.player.x - 67.6;
+        this.y = this.player.y + 13;
         this.penetrationCount = this.player.attackPierce;
-        this.explosionRadius = 100;
+        this.explosionRadius = 52;
         this.sound = projectile1Sound;
         this.sound.volume = 0.1;
         this.sound.currentTime = 0;
@@ -112,10 +112,10 @@ export class Projectile1 extends Projectile {
     };
 
     inContact(target) {
-        return this.x + 160 < target.x + target.width 
-            && this.x + 240 > target.x
-            && this.y + 20 < target.y + target.height
-            && this.y + 95 > target.y
+        return this.x + 83.2 < target.x + target.width 
+            && this.x + 124.8 > target.x
+            && this.y + 10.4 < target.y + target.height
+            && this.y + 49.4 > target.y
     };
 };
 
@@ -123,10 +123,10 @@ export class Projectile1 extends Projectile {
 export class Projectile2 extends Projectile {
     constructor (game, player) {
         super(game, player);
-        this.x = this.player.x - 150;
-        this.y = this.player.y + 20;
+        this.x = this.player.x - 78;
+        this.y = this.player.y + 10.2;
         this.penetrationCount = this.player.attackPierce;
-        this.explosionRadius = 140;
+        this.explosionRadius = 72.8;
         this.sound = projectile2Sound;
         this.sound.volume = 1;
         this.sound.currentTime = 0;
@@ -154,10 +154,10 @@ export class Projectile2 extends Projectile {
     };
 
     inContact(target) {
-        return this.x + 220 < target.x + target.width 
-            && this.x + 320 > target.x
-            && this.y + 35 < target.y + target.height
-            && this.y + 125 > target.y
+        return this.x + 114.4 < target.x + target.width 
+            && this.x + 166.4 > target.x
+            && this.y + 18.2 < target.y + target.height
+            && this.y + 65 > target.y
     };
 };
 
@@ -166,10 +166,10 @@ export class Projectile3 extends Projectile {
     constructor(game, player) {
         super(game, player);
         //Hitbox x larger than x by 109
-        this.x = this.player.x - 200;
-        this.y = this.player.y + 10;
+        this.x = this.player.x - 104;
+        this.y = this.player.y + 5.2;
         this.penetrationCount = this.player.attackPierce;
-        this.explosionRadius = 170;
+        this.explosionRadius = 88.4;
         this.sound = projectile3Sound;
         this.sound.volume = 0.5;
         this.sound.currentTime = 0;
@@ -197,10 +197,10 @@ export class Projectile3 extends Projectile {
     };
 
     inContact(target) {
-        return this.x + 270 < target.x + target.width 
-            && this.x + 390 > target.x
-            && this.y + 50 < target.y + target.height
-            && this.y + 160 > target.y
+        return this.x + 140.4 < target.x + target.width 
+            && this.x + 202.8 > target.x
+            && this.y + 26 < target.y + target.height
+            && this.y + 83.2 > target.y
     };
 };
 
@@ -212,7 +212,7 @@ export class Laser {
         this.player = player;
         this.energy = this.player.energy;
         this.input = this.player.input;
-        this.x = this.player.x + this.player.width + 30;
+        this.x = this.player.x + this.player.width + 15.6;
         this.y = this.player.y;
         this.height = this.player.height;
         this.colorSet = {
@@ -278,11 +278,11 @@ export class Laser {
         };
 
         //? Update position
-        this.x = this.player.x + this.player.width + 30;
+        this.x = this.player.x + this.player.width + 15.6;
         this.y = this.player.y;
 
         //? Reduce player movement
-        this.player.x -= this.game.normalize(2);
+        this.player.x -= this.game.normalize(2) * 0.52;
         this.player.yMovementRestriction = true;
 
         //? Delete
@@ -304,11 +304,11 @@ export class Laser {
         this.ctx.fill();
         this.ctx.beginPath();
         this.ctx.fillStyle = this.colorSet[this.currentLevel][this.frame][1];
-        this.ctx.roundRect(this.x + 10, this.y + 5, width, this.height - 10, 100);
+        this.ctx.roundRect(this.x + 5.2, this.y + 2.6, width, this.height - 5.2, 100);
         this.ctx.fill();
         this.ctx.beginPath()
         this.ctx.fillStyle = this.colorSet[this.currentLevel][this.frame][2];
-        this.ctx.roundRect(this.x + 20, this.y + 10, width, this.height - 20, 100);
+        this.ctx.roundRect(this.x + 10.4, this.y + 5.2, width, this.height - 10.4, 100);
         this.ctx.fill();
     };
 

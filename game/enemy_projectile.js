@@ -13,17 +13,17 @@ export class ReaperProjectile {
         this.spriteWidth = 35.75;
         this.spriteHeight = 35;
         this.numberOfFrame = 4;
-        this.width = 300;
+        this.width = 156;
         this.height = (this.spriteHeight / this.spriteWidth) * this.width;
         this.x = this.reaper.x - this.width;
-        this.y = this.reaper.y + 50;
+        this.y = this.reaper.y + 26;
         this.deltaXHitbox = 0;
         this.deltaYHitbox = 0;
         this.deltaWidthHitbox = 0;
         this.deltaHeightHitbox = 0;
-        this.speedX = this.game.normalize(-4.6);
+        this.speedX = this.game.normalize(-4.6) * 0.52;
         this.acceleration = 0;
-        this.pointOfDeceleration = 500;
+        this.pointOfDeceleration = 260;
         this.frame = 0;
 
         this.timeFromLastFrame = 0;
@@ -50,7 +50,7 @@ export class ReaperProjectile {
         };
 
         //? Update movement
-        if (this.x <= this.pointOfDeceleration) this.acceleration = this.game.normalize(0.025);
+        if (this.x <= this.pointOfDeceleration) this.acceleration = this.game.normalize(0.025) * 0.52;
         else this.acceleration = 0;
 
         this.x += this.speedX;
@@ -78,7 +78,7 @@ export class ReaperProjectileSpecial extends ReaperProjectile {
 
     update(deltaTime) {
         super.update(deltaTime);
-        this.y = this.direction * 400 * Math.cos(this.angle * Math.PI / 180) + this.ySaved;
+        this.y = this.direction * 208 * Math.cos(this.angle * Math.PI / 180) + this.ySaved;
         this.angle += this.game.normalize(0.37);
     };
 };
@@ -93,12 +93,12 @@ export class GrenadeGuyProjectile {
         this.image = grenadeGuyProjectile;
         this.spriteWidth = 16;
         this.spriteHeight = 15.66;
-        this.width = 150;
+        this.width = 78;
         this.height = (this.spriteHeight / this.spriteWidth) * this.width;
-        this.x = this.grenadeGuy.animationX + 100;
-        this.y = this.grenadeGuy.animationY + 70;
-        this.xNaught = this.grenadeGuy.animationX + 100;
-        this.yNaught = this.grenadeGuy.animationY + 70;
+        this.x = this.grenadeGuy.animationX + 52;
+        this.y = this.grenadeGuy.animationY + 36.5;
+        this.xNaught = this.grenadeGuy.animationX + 52;
+        this.yNaught = this.grenadeGuy.animationY + 36.5;
         this.numberOfFrameX = 5;
         this.frameX = 0;
         this.frameY = Math.floor(Math.random() * 3);
@@ -108,18 +108,18 @@ export class GrenadeGuyProjectile {
         this.deltaHeightHitbox = 0;
 
         this.timeToGetToTarget = this.game.inverseNormalize(300); //Frame;
-        this.targetX = Math.random() * 1000 + 200;
-        this.targetY = Math.random() * 800 + 200;
-        this.speedX = (this.targetX - this.xNaught) / this.timeToGetToTarget;
-        this.speedY = -13;
-        this.accelerationY = 0.1;
+        this.targetX = Math.random() * 520 + 104;
+        this.targetY = Math.random() * 416 + 104;
+        this.speedX = ((this.targetX - this.xNaught) / this.timeToGetToTarget) * 0.52;
+        this.speedY = -6.76;
+        this.accelerationY = 0.052;
 
         this.timeFromLastSpawn = 0;
         this.intervalToExplosion = 4500;
         this.timeFromLastFrame = 0;
         this.intervalToChangeFrame = 20;
         
-        this.explosionRadius = 125;
+        this.explosionRadius = 65;
         this.damage = 1;
         this.markedForDeletion = false;
     };
@@ -138,7 +138,7 @@ export class GrenadeGuyProjectile {
         const dx = (this.targetX - this.x) / 230;
         const dy = (this.targetY - this.y) / 230; 
         this.x += Math.max(this.speedX, dx);
-        this.y += this.speedY > this.game.inverseNormalize(0.2) ? dy : this.speedY;
+        this.y += this.speedY > this.game.inverseNormalize(0.2) * 0.52 ? dy : this.speedY;
         this.speedY += this.accelerationY;
 
         //? Update explosion

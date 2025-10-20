@@ -18,11 +18,11 @@ class Health {
         this.image = playerHeart;
         this.spriteWidth = 675;
         this.spriteHeight = 603;
-        this.width = 80;
+        this.width = 41.6;
         this.height = (this.spriteHeight / this.spriteWidth) * this.width;
-        this.x = 100;
-        this.xGap = 120;
-        this.y = 120;
+        this.x = 52;
+        this.xGap = 62.4;
+        this.y = 62.4;
         this.maxHealth = 3;
         this.currentHealth = 3;
     }
@@ -42,21 +42,21 @@ class Energy {
         this.image = playerManaOrb;
         this.spriteWidth = 16;
         this.spriteHeight = 14;
-        this.width = 80;
+        this.width = 41.6;
         this.height = (this.spriteHeight / this.spriteWidth) * this.width;
-        this.x = 100;
-        this.y = 200;
+        this.x = 52;
+        this.y = 104;
         this.currentEnergy = 20;
     };
 
     draw() {
         this.ctx.drawImage(this.image, 0, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
         this.ctx.save();
-        this.ctx.font = "48px PressStart2P";
+        this.ctx.font = "25px PressStart2P";
         this.ctx.fillStyle = "black";
-        this.ctx.fillText(`${this.currentEnergy}X`, this.x + 125, this.y + 65)
+        this.ctx.fillText(`${this.currentEnergy}X`, this.x + 65, this.y + 33.8)
         this.ctx.fillStyle = "rgb(80, 164, 249)";
-        this.ctx.fillText(`${this.currentEnergy}X`, this.x + 120, this.y + 60);
+        this.ctx.fillText(`${this.currentEnergy}X`, this.x + 62.4, this.y + 31.2);
         this.ctx.restore();
     };
 };
@@ -103,13 +103,13 @@ export default class PLayer {
         this.image = playerImage;
         this.spriteWidth = 46;
         this.spriteHeight = 68;
-        this.scale = 3;
+        this.scale = 1.56;
     
         this.ctx = this.game.ctx;
         this.canvasWidth = this.game.canvasWidth;
         this.canvasHeight = this.game.canvasHeight;
-        this.x = 200;
-        this.y = 700;
+        this.x = 104;
+        this.y = 364;
         this.deltaXHitbox = 0.25;
         this.deltaYHitbox = 0.2; 
         this.width = this.spriteWidth * this.scale;
@@ -154,29 +154,29 @@ export default class PLayer {
         };
 
         //? Check input handler for movement
-        if (this.input.keyPressed["ArrowUp"] && this.input.keyPressed["ArrowRight"]) {
-            this.speedX = 3.3;
-            this.speedY = -3.3;
-        } else if (this.input.keyPressed["ArrowDown"] && this.input.keyPressed["ArrowRight"]) {
-            this.speedX = 3.3;
-            this.speedY = 3.3;
-        } else if (this.input.keyPressed["ArrowDown"] && this.input.keyPressed["ArrowLeft"]) {
-            this.speedX = -3.3;
-            this.speedY = 3.3;
-        } else if (this.input.keyPressed["ArrowUp"] && this.input.keyPressed["ArrowLeft"]) {
-            this.speedX = -3.3;
-            this.speedY = -3.3;
-        } else if (this.input.keyPressed["ArrowUp"]) {
-            this.speedY = -5
+        if (this.input.keyPressed["w"] && this.input.keyPressed["d"]) {
+            this.speedX = 1.7;
+            this.speedY = -1.7;
+        } else if (this.input.keyPressed["s"] && this.input.keyPressed["d"]) {
+            this.speedX = 1.7;
+            this.speedY = 1.7;
+        } else if (this.input.keyPressed["s"] && this.input.keyPressed["a"]) {
+            this.speedX = -1.7;
+            this.speedY = 1.7;
+        } else if (this.input.keyPressed["w"] && this.input.keyPressed["a"]) {
+            this.speedX = -1.7;
+            this.speedY = -1.7;
+        } else if (this.input.keyPressed["w"]) {
+            this.speedY = -2.6;
             this.speedX = 0;
-        } else if (this.input.keyPressed["ArrowDown"]) {
-            this.speedY = 5;
+        } else if (this.input.keyPressed["s"]) {
+            this.speedY = 2.6;
             this.speedX = 0;
-        } else if (this.input.keyPressed["ArrowLeft"]) {
-            this.speedX = -5
+        } else if (this.input.keyPressed["a"]) {
+            this.speedX = -2.6;
             this.speedY = 0;
-        } else if (this.input.keyPressed["ArrowRight"]) {
-            this.speedX = 5
+        } else if (this.input.keyPressed["d"]) {
+            this.speedX = 2.6;
             this.speedY = 0;
         } else {
             this.speedX = 0;
@@ -196,7 +196,7 @@ export default class PLayer {
 
         //? Check input handler for attack
         if (this.timeFromLastAttack >= this.intervalToAttack) {
-            if (this.input.keyPressed["z"] && !this.input.keyPressed["Shift"] && this.game.projectiles.length === 0) {
+            if (this.input.keyPressed["j"] && !this.input.keyPressed["shift"] && this.game.projectiles.length === 0) {
                 if (this.attackLevel === 1) this.game.projectiles.push(new Projectile1(this.game, this));
                 else if (this.attackLevel === 2) this.game.projectiles.push(new Projectile2(this.game, this));
                 else if (this.attackLevel === 3) this.game.projectiles.push(new Projectile3(this.game, this));
@@ -206,7 +206,7 @@ export default class PLayer {
             this.timeFromLastAttack += deltaTime;
         };
 
-        if (this.energy.currentEnergy > 0 && this.input.keyPressed[" "] && !this.input.keyPressed["Shift"] && !this.chargingLaser) {
+        if (this.energy.currentEnergy > 0 && this.input.keyPressed[" "] && !this.input.keyPressed["shift"] && !this.chargingLaser) {
             setTimeout(() => {
                 this.game.projectiles.push(new Laser(this.game, this));
             }, 1000);
@@ -222,7 +222,7 @@ export default class PLayer {
         //? Check input handler to spawn dash animation
         //? Check input handler to set invincibility while dash
         this.invincible = false;
-        if (this.input.keyPressed["Shift"] || this.invincibleTime > 0) {
+        if (this.input.keyPressed["shift"] || this.invincibleTime > 0) {
             this.invincible = true;
             this.speedX = this.speedX * 1.7;
             this.speedY = this.speedY * 1.7;
@@ -233,7 +233,7 @@ export default class PLayer {
                 this.timeFromLastDashAnimation += deltaTime;
             };
             this.stamina = this.invincibleTime > 0 ? this.stamina - 0 : Number(this.stamina - this.game.normalize(0.5));
-            if (this.stamina <= 0) this.input.keyPressed["Shift"] = false;
+            if (this.stamina <= 0) this.input.keyPressed["shift"] = false;
         };
         //? If stamina is below 30, then lock the Shift keydown so that player cannot press it unless has more than 30 stamina
         if (this.stamina <= 50) this.input.shiftLock = true;
@@ -277,12 +277,12 @@ export default class PLayer {
         //* Draw stamina manually
         this.ctx.save();
         this.ctx.fillStyle = this.stamina <= 50 ? "rgb(161, 197, 146)" : " rgb(36, 160, 43)";
-        this.ctx.roundRect(120, 300, this.stamina * 10, 20, 10);
+        this.ctx.roundRect(62.4, 156, this.stamina * 5.2, 10.4, 5.4);
         this.ctx.fill();
         this.ctx.beginPath();
-        this.ctx.moveTo(624, 290);
-        this.ctx.lineTo(624, 325);
-        this.ctx.lineWidth = 10;
+        this.ctx.moveTo(324.5, 150.8);
+        this.ctx.lineTo(324.5, 169);
+        this.ctx.lineWidth = 5.4;
         this.ctx.stroke();
         this.ctx.restore();
     };

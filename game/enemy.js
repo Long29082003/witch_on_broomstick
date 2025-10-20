@@ -148,13 +148,13 @@ export class Ghost extends Enemy{
         this.name = "ghost";
         
         this.x = this.canvasWidth + 100;
-        this.y = Math.random() * 800 + 100;
-        this.scale = Math.random() * 0.9 + 0.6
+        this.y = Math.random() * 416 + 52;
+        this.scale = (Math.random() * 0.9 + 0.6) * 0.52;
         this.width = this.spriteWidth * this.scale;
         this.height = this.spriteHeight * this.scale;
-        this.xSpeed = this.game.normalize(2) * xSpeedScale;
+        this.xSpeed = this.game.normalize(2) * xSpeedScale * 0.52;
         this.angle = Math.random() * 360;
-        this.angleSpeed = this.game.normalize(Math.random() + 0.5);
+        this.angleSpeed = this.game.normalize(Math.random() + 0.5) * 0.52;
         this.wavyStrength = Math.random() + 1;
         this.frame = 0;
 
@@ -171,8 +171,8 @@ export class Ghost extends Enemy{
 
     update(deltaTime) {
         this.y += Math.sin(this.angle * Math.PI / 180) * this.wavyStrength;
-        if (this.y <= 20) this.y = 20;
-        if (this.y + this.height >= this.canvasHeight - 100) this.y = this.canvasHeight - 100 - this.height;
+        if (this.y <= 10) this.y = 10;
+        if (this.y + this.height >= this.canvasHeight - 52) this.y = this.canvasHeight - 52 - this.height;
         this.x -= this.xSpeed;
         if (this.x < -this.width) this.markedForGoingOutOfBound = true;
         this.angle += this.angleSpeed;
@@ -212,11 +212,11 @@ export class Demon extends Enemy {
         this.name = "demon";
         
         this.x = this.canvasWidth + 100;
-        this.y = Math.random() * 750 + 200;
+        this.y = Math.random() * 390 + 104;
         this.newX = this.x;
         this.newY = this.y;
-        this.speed = 0.05;
-        this.scale = Math.random() * 0.6 + 0.4;
+        this.speed = 0.025;
+        this.scale = (Math.random() * 0.6 + 0.4) * 0.52;
         this.width = this.spriteWidth * this.scale;
         this.height = this.spriteHeight * this.scale;
         this.frame = 0;
@@ -236,8 +236,8 @@ export class Demon extends Enemy {
 
     update(deltaTime) {
         if (this.timeFromLastPositionChange >= this.intervalToChangePosition) {
-            this.newX = this.x - (Math.random() * 200 + 400);
-            this.newY = Math.random() * 950 + 50;
+            this.newX = this.x - (Math.random() * 104 + 208);
+            this.newY = Math.random() * 494 + 26;
             this.timeFromLastPositionChange = 0;
         };
         const dx = this.newX - this.x;
@@ -282,9 +282,9 @@ export class Rocket extends Enemy {
         this.name = "rocket";
         
         this.x = this.canvasWidth + 50;
-        this.y = Math.random() * 700 + 100;
-        this.speed = this.game.normalize(1) * xSpeedScale;
-        this.scale = Math.random() * 0.2 + 0.55;
+        this.y = Math.random() * 364 + 52;
+        this.speed = this.game.normalize(1) * xSpeedScale * 0.52;
+        this.scale = (Math.random() * 0.2 + 0.55) * 0.52;
         this.width = this.spriteWidth * this.scale;
         this.height = (this.spriteHeight / this.spriteWidth) * this.width;     
         this.frame = 0;
@@ -340,7 +340,7 @@ export class Bird extends Enemy{
         
         this.x = this.canvasWidth + 100;
         this.y = y;
-        this.speed = this.game.normalize(5) * xSpeedScale;
+        this.speed = this.game.normalize(5) * xSpeedScale * 0.52;
         this.scale = scale;
         this.width = this.spriteWidth * this.scale;
         this.height = (this.spriteHeight / this.spriteWidth) * this.width; 
@@ -418,7 +418,7 @@ export class Bowling extends Enemy{
         super("bowling", game);
         this.name = "bowling";
 
-        this.centerX = this.canvasWidth + 50;
+        this.centerX = this.canvasWidth + 26;
         this.centerY = y;
         this.x = this.canvasWidth;
         this.y = 0;
@@ -426,10 +426,10 @@ export class Bowling extends Enemy{
         this.yFluctuateRange = yFluctuateRange;
         this.fluctuateSpeedX = game.normalize(Math.random() * 2 + 1);
         this.fluctuateSpeedY = game.normalize(Math.random() * 2 + 1); 
-        this.speed = game.normalize(1);
+        this.speed = game.normalize(1) * 0.52;
         this.angle = 0;
         this.angleSpeed = game.normalize(1);
-        this.scale = 0.7;
+        this.scale = 0.364;
         this.width = this.spriteWidth * this.scale;
         this.height = (this.spriteHeight / this.spriteWidth) * this.width;
         this.frame = 0;
@@ -488,13 +488,13 @@ export class Bullet extends Enemy {
         super("bullet", game);
         this.name = "bullet";
         this.x = this.game.canvasWidth + 10;
-        this.y = Math.random() * 600 + 100;
-        this.speedX = game.normalize(-1) * xSpeedScale;
-        this.acceleration = game.normalize(0.05);
-        this.pointOfDeceleration = 1900;
+        this.y = Math.random() * 312 + 52;
+        this.speedX = game.normalize(-1) * xSpeedScale * 0.52;
+        this.acceleration = game.normalize(0.05) * 0.52;
+        this.pointOfDeceleration = 988;
         this.isGoingBack = false;
         this.isBeforeGoingBack = true;
-        this.width = 300;
+        this.width = 156;
         this.height = (this.spriteHeight / this.spriteWidth) * this.width;
         this.frame = 0;
 
@@ -526,13 +526,13 @@ export class Bullet extends Enemy {
         };
 
         if (this.isGoingBack) {
-            this.speedX += this.acceleration * 0.15;
-            if (this.speedX > 2) {
+            this.speedX += this.acceleration * 0.078;
+            if (this.speedX > 0.5) {
                 this.isGoingBack = false;
             };
         };
 
-        if (!this.isBeforeGoingBack && !this.isGoingBack) this.speedX -= this.acceleration * 0.4;
+        if (!this.isBeforeGoingBack && !this.isGoingBack) this.speedX -= this.acceleration * 0.208;
         this.x += this.speedX;
 
         if (this.hp <= 0) {

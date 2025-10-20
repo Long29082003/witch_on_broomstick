@@ -21,12 +21,12 @@ export class Reaper {
         this.image = reaperImage;
         this.spriteWidth = 42;
         this.spriteHeight = 44;
-        this.animationWidth = 400;
+        this.animationWidth = 208;
         this.animationHeight = (this.spriteHeight / this.spriteWidth) * this.animationWidth;
         this.animationX = this.game.canvasWidth + 100;
         this.animationY = Math.random() * 100 + 300;
-        this.upperY = this.animationY + 400;
-        this.lowerY = Math.min(this.game.canvasHeight - this.animationWidth, this.animationY - 400);
+        this.upperY = this.animationY + 208;
+        this.lowerY = Math.min(this.game.canvasHeight - this.animationWidth, this.animationY - 208);
         this.movingIn = true;
         this.isAttack = false;
 
@@ -35,15 +35,15 @@ export class Reaper {
         this.deltaWidthHitbox = -0.2;
         this.deltaHeightHitbox = -0.2;
 
-        this.x = this.animationX + 80;
-        this.y = this.animationY + 60;
-        this.width = 120;
-        this.height = 110;
+        this.x = this.animationX + 41.6;
+        this.y = this.animationY + 31.2;
+        this.width = 62;
+        this.height = 57.2;
 
-        this.speedX = this.game.normalize(0.5);
+        this.speedX = this.game.normalize(0.5) * 0.52;
         this.numberOfFrameX = 8;
         this.numberOfFrameY = 2;
-        this.speedY = this.game.normalize(1);
+        this.speedY = this.game.normalize(1) * 0.52;
         this.frameX = 0;
         this.frameY = 0;
 
@@ -104,8 +104,8 @@ export class Reaper {
         };
         
         //? Update hitbox position
-        this.x = this.animationX + 80;
-        this.y = this.animationY + 60;
+        this.x = this.animationX + 41.6;
+        this.y = this.animationY + 31.2;
 
         //? Check collision with player
         if (this.collideWithPlayer()) {
@@ -174,25 +174,25 @@ export class GrenadeGuy {
         this.image = grenadeGuyImage;
         this.spriteWidth = 35.75;
         this.spriteHeight = 32;
-        this.animationWidth = 400;
+        this.animationWidth = 208;
         this.animationHeight = (this.spriteHeight / this.spriteWidth) * this.animationWidth;
         this.animationX = this.game.canvasWidth + 100;
         this.animationY = this.game.canvasHeight - this.animationHeight;
         this.upperX = this.game.canvasWidth - this.animationWidth;
-        this.lowerX = Math.random() * 500 + 1300;
+        this.lowerX = Math.random() * 260 + 676;
         this.movingIn = true;
         this.isAttack = false;
 
-        this.x = this.animationX + 100;
-        this.y = this.animationY + 40;
-        this.width = 130;
-        this.height = 120;
+        this.x = this.animationX + 52;
+        this.y = this.animationY + 21;
+        this.width = 68;
+        this.height = 62;
         this.numberOfFrameX = 8;
         this.numberOfFrameY = 2;
         this.frameX = 0;
         this.frameY = 0;
-        this.speedX = this.game.normalize(-1);
-        this.bulletXSpeedScale = bulletXSpeedScale;
+        this.speedX = this.game.normalize(-1) * 0.52;
+        this.bulletXSpeedScale = bulletXSpeedScale * 0.52;
 
         this.deltaXHitbox = 0.22;
         this.deltaYHitbox = 0.1;
@@ -271,8 +271,8 @@ export class GrenadeGuy {
         };
 
         //? Update hitbox animation
-        this.x = this.animationX + 100;
-        this.y = this.animationY + 40;
+        this.x = this.animationX + 52;
+        this.y = this.animationY + 21;
 
         //? Check collision with player
         if (this.collideWithPlayer()) {

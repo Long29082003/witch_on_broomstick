@@ -21,12 +21,12 @@ class Drop {
         this.spriteWidth = spriteWidth;
         this.spriteHeight = spriteHeight;
 
-        this.width = 100;
+        this.width = 52;
         this.height = (this.spriteHeight / this.spriteWidth) * this.width;
-        this.x = Math.random() * 800 + 400;
+        this.x = Math.random() * 416 + 208;
         this.y = -this.height;
 
-        this.speed = this.game.normalize(1);
+        this.speed = this.game.normalize(1) * 0.52;
         this.markedForDeletion = false;
     };
 
