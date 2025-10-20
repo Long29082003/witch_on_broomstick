@@ -855,7 +855,7 @@ const animateStartingScreen = (timeStamp) => {
     startingScreen.update(deltaTime);
     startingScreen.draw();
 
-    //? Check FPS 0.7 sec into browser
+    //? Check FPS 2 sec into browser
     if (timeStamp > 2000 && !game.fpsAlreadyChecked) {
         game.fpsAlreadyChecked = true;
         game.checkFramePerSecond(deltaTime);
@@ -1447,7 +1447,7 @@ const reset = () => {
     player.timeFromLastDashAnimation = 0;
     player.glowingTime = 0;
     player.health.currentHealth = 3;
-    player.energy.currentEnergy = 50;
+    player.energy.currentEnergy = 20;
     player.stamina = 100;
     player.attackLevel = 1;
     player.attackPierce = 1;
